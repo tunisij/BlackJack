@@ -27,6 +27,7 @@ public class BlackJackMain {
 		switch (hand.getResult()) {
 			case BLACKJACK:
 				blackjacks++;
+				wins++;
 				break;
 			case WIN:
 				wins++;
