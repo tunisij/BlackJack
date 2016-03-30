@@ -27,6 +27,14 @@ public class Hand {
 		return getValue() > 21;
 	}
 	
+	public boolean isValidToSplit() {
+		return cards.size() == 2 && cards.get(0).getValue() == cards.get(1).getValue();
+	}
+	
+	public boolean isValidToDoubleDown() {
+		return cards.size() == 2 && getValue() >= 9 && getValue() <= 11;
+	}
+	
 	public boolean isBlackJack() {
 		return getValue() == 21 && cards.size() == 2;
 	}
