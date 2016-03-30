@@ -27,6 +27,20 @@ public class Hand {
 		return getValue() > 21;
 	}
 	
+	public boolean isSoft() {
+		for (Card card : cards) {
+			if (card.isAce()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public int getSize() {
+		return cards.size();
+	}
+	
 	public boolean isValidToSplit() {
 		return cards.size() == 2 && cards.get(0).getValue() == cards.get(1).getValue();
 	}
@@ -39,7 +53,7 @@ public class Hand {
 		return getValue() == 21 && cards.size() == 2;
 	}
 	
-	public Card getDealerCard() {
+	public Card getFirstCard() {
 		return cards.get(0);
 	}
 	

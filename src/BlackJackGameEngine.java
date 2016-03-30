@@ -50,10 +50,10 @@ public class BlackJackGameEngine {
 		Decision decision = null;
 		
 		while (hand.getValue() <= 21 && (decision == null || !decision.equals(Decision.STAND))) {
-			decision = playerDecisionEngine.decide(hand, dealerHand.getDealerCard());
+			decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard());
 			
 			while (!validateDecision(hand, decision)) {
-				decision = playerDecisionEngine.decide(hand, dealerHand.getDealerCard());
+				decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard());
 			}
 			
 			switch(decision) {

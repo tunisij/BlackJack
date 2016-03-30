@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class BlackJackMain {
 	
 	BlackJackGameEngine engine = new BlackJackGameEngine();
-	ArrayList<RoundResult> roundResults = engine.playRounds(2000);
+	ArrayList<RoundResult> roundResults = engine.playRounds(200000);
 	
 	Integer blackjacks = 0;
 	Integer wins = 0;
