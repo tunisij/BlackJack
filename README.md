@@ -2,10 +2,7 @@
 
 200,000 runs with random decision
 
-Blackjacks: 4756
-
-Wins: 60710
-
-Pushes: 11958
-
-Losses: 138544
+Blackjacks |  Wins  | Pushes | Losses | Decision Type
+---------- | ------ | ------ | ------ | -------------
+4756       | 60710  | 11958  | 138544 | Random
+9223       | 86984  | 20536  | 95145  | Basic Strategy
