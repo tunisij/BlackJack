@@ -4,6 +4,7 @@ import java.util.Collections;
 public class Deck {
 	
 	private ArrayList<Card> deck = new ArrayList<>();
+	private int count = 0;
 	
 	public Deck() {
 		initializeDeck(1);
@@ -25,10 +26,24 @@ public class Deck {
 	}
 	
 	public Card deal() {
-		return deck.remove(0);
+		Card card = deck.remove(0);
+		updateCount(card);
+		return card;
 	}
 	
 	public int getSize() {
 		return deck.size();
+	}
+	
+	private void updateCount(Card card) {
+		if (card.getValue() <= 6) {
+			count++;
+		} else if (card.getValue() >= 10) {
+			count--;
+		}
+	}
+	
+	public int getCount() {
+		return count;
 	}
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class PlayerDecisionEngine {
 
-	public Decision decide(Hand playerHand, Card dealerCard) {
+	public Decision decide(Hand playerHand, Card dealerCard, int count) {
 		return getBasicStrategyDecision(playerHand, dealerCard);
 //		return getRandomDecision();
 //		return getDecisionFromHuman(playerHand, dealerCard);
@@ -43,7 +43,7 @@ public class PlayerDecisionEngine {
 	}
 	
 	private Decision getDecisionFromHuman(Hand playerHand, Card dealerCard) {
-		Scanner reader = new Scanner(System.in);  // Reading from System.in
+		Scanner reader = new Scanner(System.in);
 		System.out.println(playerHand.toString());
 		System.out.println("Dealer showing: " + dealerCard.toString());
 		System.out.println();

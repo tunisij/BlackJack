@@ -30,12 +30,13 @@ public class BlackJackGameEngine {
 		
 		dealerHand = new Hand(deck.deal(), deck.deal());
 		playerHands = new ArrayList<Hand>(Arrays.asList(new Hand(deck.deal(), deck.deal())));
-		
-		playerHands = playPlayerHand(playerHands.get(0));
 
-		playDealerHand();
-		setResults();
+		if (!dealerHand.isBlackJack()) {
+			playerHands = playPlayerHand(playerHands.get(0));
+			playDealerHand();
+		}
 		
+		setResults();
 		return new RoundResult(playerHands, dealerHand);
 	}
 	
@@ -50,10 +51,10 @@ public class BlackJackGameEngine {
 		Decision decision = null;
 		
 		while (hand.getValue() <= 21 && (decision == null || !decision.equals(Decision.STAND))) {
-			decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard());
+			decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
 			
 			while (!validateDecision(hand, decision)) {
-				decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard());
+				decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
 			}
 			
 			switch(decision) {
