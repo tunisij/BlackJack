@@ -1,6 +1,6 @@
 # BlackJack
 
-200,000 runs with random decision
+200,000 runs
 
 Blackjacks |  Wins  | Pushes | Losses | Decision Type
 ---------- | ------ | ------ | ------ | -------------
