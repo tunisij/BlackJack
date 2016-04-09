@@ -6,26 +6,26 @@ public class BlackJackGameEngine {
 	private Deck deck;
 	private Hand dealerHand;
 	private ArrayList<Hand> playerHands;
-	private PlayerDecisionEngine playerDecisionEngine;
+	private DecisionEngine decisionEngine;
 	
 	private static final int NUMBER_OF_DECKS = 6;
 	
 	public BlackJackGameEngine() {
 		deck = new Deck(NUMBER_OF_DECKS);
-		playerDecisionEngine = new PlayerDecisionEngine();
 	}
 	
-	public ArrayList<RoundResult> playRounds(int rounds) {
+	public ArrayList<RoundResult> playRounds(int rounds, DecisionEngine decisionEngine) {
 		ArrayList<RoundResult> roundResults = new ArrayList<RoundResult>();
+		this.decisionEngine = decisionEngine;
 		
 		for (int i = 0; i < rounds; i++) {
-			roundResults.add(playRound());
+			roundResults.add(playRound(decisionEngine));
 		}
 		
 		return roundResults;
 	}
 	
-	public RoundResult playRound() {
+	private RoundResult playRound(DecisionEngine decisionEngine) {
 		checkForReshuffle();
 		
 		dealerHand = new Hand(deck.deal(), deck.deal());
@@ -51,10 +51,10 @@ public class BlackJackGameEngine {
 		Decision decision = null;
 		
 		while (hand.getValue() <= 21 && (decision == null || !decision.equals(Decision.STAND))) {
-			decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
+			decision = decisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
 			
 			while (!validateDecision(hand, decision)) {
-				decision = playerDecisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
+				decision = decisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
 			}
 			
 			switch(decision) {
