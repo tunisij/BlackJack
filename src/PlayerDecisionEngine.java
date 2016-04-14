@@ -4,7 +4,9 @@ import java.util.Scanner;
 public class PlayerDecisionEngine {
 
 	public Decision decide(Hand playerHand, Card dealerCard) {
-		return getBasicStrategyDecision(playerHand, dealerCard);
+		DecisionRecorder recorder = new DecisionRecorder(playerHand);
+		return recorder.getDecision();
+//		return getBasicStrategyDecision(playerHand, dealerCard);
 //		return getRandomDecision();
 //		return getDecisionFromHuman(playerHand, dealerCard);
 	}

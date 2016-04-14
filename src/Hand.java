@@ -100,4 +100,8 @@ public class Hand {
 		return string;
 	}
 	
+	public Card get(int cardIndex) {
+		return cards.get(cardIndex);
+	}
+	
 }

@@ -15,9 +15,9 @@ public class BlackJackMain {
 			for (Hand hand : roundResult.getPlayerHands()) {
 				addToCount(hand);
 				
-				System.out.println(hand.toString());
+				//System.out.println(hand.toString());
 			}
-			System.out.println(roundResult.getDealerHand());
+			//System.out.println(roundResult.getDealerHand());
 		}
 		
 		printCounts();
