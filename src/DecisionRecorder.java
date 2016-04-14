@@ -65,10 +65,6 @@ public class DecisionRecorder {
 							
 						}
 					}
-					
-					if((i + j) == 21) {
-						
-					}
 				}
 			}
 		}
