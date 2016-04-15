@@ -4,14 +4,12 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
-/*
- * http://mnemstudio.org/path-finding-q-learning-tutorial.htm
- */
 public class BlackJackMain {
 	
 	BlackJackGameEngine engine = new BlackJackGameEngine();
-	ArrayList<RoundResult> randomResults = engine.playRounds(20000, new RandomDecisionEngine());
-	ArrayList<RoundResult> basicStrategyResults = engine.playRounds(20000, new BasicStrategyDecisionEngine());
+	ArrayList<RoundResult> randomResults = engine.playRounds(100, new RandomDecisionEngine());
+	ArrayList<RoundResult> basicStrategyResults = engine.playRounds(100, new BasicStrategyDecisionEngine());
+	ArrayList<RoundResult> aiResults = engine.playRounds(100, new AIDecisionEngine());
 	
 	Integer blackjacks = 0;
 	Integer wins = 0;
@@ -19,14 +17,14 @@ public class BlackJackMain {
 	Integer pushes = 0;
 
 	public void run() {
-//		for (RoundResult roundResult : randomResults) {
-//			for (Hand hand : roundResult.getPlayerHands()) {
-//				addToCount(hand);
-//				
-//				System.out.println(hand.toString());
-//			}
-//			System.out.println(roundResult.getDealerHand());
-//		}
+		for (RoundResult roundResult : aiResults) {
+			for (Hand hand : roundResult.getPlayerHands()) {
+				addToCount(hand);
+				
+				System.out.println("Player hand\n"+hand.toString());
+			}
+			System.out.println("Dealer hand\n"+roundResult.getDealerHand());
+		}
 		
 		createGraph();
 		printCounts();
@@ -72,7 +70,8 @@ public class BlackJackMain {
 	private void createGraph() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(createSeries("Basic Strategy", basicStrategyResults));
-		dataset.addSeries(createSeries("Random", randomResults));		
+		dataset.addSeries(createSeries("Random", randomResults));
+		dataset.addSeries(createSeries("AI", aiResults));
 		
 		Chart chart = new Chart(dataset);
 		chart.pack();

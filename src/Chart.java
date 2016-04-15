@@ -25,7 +25,7 @@ public class Chart extends ApplicationFrame {
 		final XYPlot plot = xylineChart.getXYPlot();
 		
 		ValueAxis yAxis = plot.getRangeAxis();
-		yAxis.setRange(0, 1);
+		yAxis.setRange(.2, .6);
 		
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 		renderer.setSeriesPaint(0, Color.RED);

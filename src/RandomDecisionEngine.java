@@ -18,4 +18,8 @@ public class RandomDecisionEngine implements DecisionEngine {
 			return Decision.STAND;
 		}
 	}
+	
+	public void appendResult(RoundResult result) {
+		
+	}
 }

@@ -29,4 +29,8 @@ public class PlayerDecisionEngine implements DecisionEngine {
 			return Decision.STAND;
 		}
 	}
+	
+	public void appendResult(RoundResult result) {
+		
+	}
 }

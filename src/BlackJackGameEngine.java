@@ -37,7 +37,9 @@ public class BlackJackGameEngine {
 		}
 		
 		setResults();
-		return new RoundResult(playerHands, dealerHand);
+		RoundResult result = new RoundResult(playerHands, dealerHand);
+		decisionEngine.appendResult(result);
+		return result;
 	}
 	
 	private void checkForReshuffle() {
@@ -50,7 +52,7 @@ public class BlackJackGameEngine {
 		ArrayList<Hand> hands = new ArrayList<Hand>();
 		Decision decision = null;
 		
-		while (hand.getValue() <= 21 && (decision == null || !decision.equals(Decision.STAND))) {
+		while (hand.getValue() < 21 && (decision == null || !decision.equals(Decision.STAND))) {
 			decision = decisionEngine.decide(hand, dealerHand.getFirstCard(), deck.getCount());
 			
 			while (!validateDecision(hand, decision)) {
