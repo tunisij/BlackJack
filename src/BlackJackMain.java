@@ -6,10 +6,12 @@ import org.jfree.ui.RefineryUtilities;
 
 public class BlackJackMain {
 	
+	final int rounds = 20000;
+	
 	BlackJackGameEngine engine = new BlackJackGameEngine();
-	ArrayList<RoundResult> randomResults = engine.playRounds(100, new RandomDecisionEngine());
-	ArrayList<RoundResult> basicStrategyResults = engine.playRounds(100, new BasicStrategyDecisionEngine());
-	ArrayList<RoundResult> aiResults = engine.playRounds(100, new AIDecisionEngine());
+	ArrayList<RoundResult> randomResults = engine.playRounds(rounds, new RandomDecisionEngine());
+	ArrayList<RoundResult> basicStrategyResults = engine.playRounds(rounds, new BasicStrategyDecisionEngine());
+	ArrayList<RoundResult> aiResults = engine.playRounds(rounds, new AIDecisionEngine());
 	
 	Integer blackjacks = 0;
 	Integer wins = 0;
@@ -20,7 +22,6 @@ public class BlackJackMain {
 		for (RoundResult roundResult : aiResults) {
 			for (Hand hand : roundResult.getPlayerHands()) {
 				addToCount(hand);
-				
 				System.out.println("Player hand\n"+hand.toString());
 			}
 			System.out.println("Dealer hand\n"+roundResult.getDealerHand());
