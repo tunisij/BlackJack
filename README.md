@@ -1,4 +1,5 @@
 # BlackJack
+Remember to add JFreeChart to the build path.
 
 200,000 runs
 
