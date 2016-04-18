@@ -22,9 +22,9 @@ public class BlackJackMain {
 		for (RoundResult roundResult : aiResults) {
 			for (Hand hand : roundResult.getPlayerHands()) {
 				addToCount(hand);
-				System.out.println("Player hand\n"+hand.toString());
+//				System.out.println("Player hand\n"+hand.toString());
 			}
-			System.out.println("Dealer hand\n"+roundResult.getDealerHand());
+//			System.out.println("Dealer hand\n"+roundResult.getDealerHand());
 		}
 		
 		createGraph();

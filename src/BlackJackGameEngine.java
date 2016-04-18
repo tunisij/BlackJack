@@ -96,15 +96,18 @@ public class BlackJackGameEngine {
 	
 	private void setResults() {
 		for (Hand hand : playerHands) {
+			ResultEnum toSet;
 			if (hand.getValue() == dealerHand.getValue()) {
-				hand.setResult(ResultEnum.PUSH);
-			} else if ((hand.getValue() < dealerHand.getValue() && !dealerHand.isBust()) || hand.isBust()) {
-				hand.setResult(ResultEnum.LOSE);
+				toSet = ResultEnum.PUSH;
+			} else if (hand.isBust() || (!dealerHand.isBust() && hand.getValue() < dealerHand.getValue())) {
+				toSet = ResultEnum.LOSE;
 			} else if (hand.isBlackJack()) {
-				hand.setResult(ResultEnum.BLACKJACK);
+				toSet = ResultEnum.BLACKJACK;
 			} else {
-				hand.setResult(ResultEnum.WIN);
+				toSet = ResultEnum.WIN;
 			}
+			hand.setResult(toSet);
+			decisionEngine.updateMatrixQ(toSet);
 		}
 	}
 	

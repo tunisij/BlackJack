@@ -20,6 +20,10 @@ public class RandomDecisionEngine implements DecisionEngine {
 	}
 	
 	public void appendResult(RoundResult result) {
-		
+		// purpsosely empty
+	}
+	
+	public void updateMatrixQ(ResultEnum result) {
+		// purpsosely empty
 	}
 }

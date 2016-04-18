@@ -1,7 +1,9 @@
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * This class implements the Q-Learning algorithm to allow an AI agent to
@@ -37,6 +39,7 @@ import java.util.Random;
 public class AIDecisionEngine implements DecisionEngine {
 	
 	private ArrayList<RoundResult> results = new ArrayList<RoundResult>();
+	private Stack<Point> stack = new Stack<Point>();
 	
 	private Integer[][] matrixR;
 	private Integer[][] matrixQ;
@@ -105,13 +108,16 @@ public class AIDecisionEngine implements DecisionEngine {
 		
 		// Update the agent's brain
 		matrixQ[currentHandValue][nextState] = (int) (reward + (gamma * nextStateMax));
-		
+
 		/*
 		System.out.println("MATRIX Q -------------------|");
 		printMatrix(matrixQ);
 		System.out.println("MATRIX R -------------------|");
 		printMatrix(matrixR);
 		*/
+		
+		Point thisAction = new Point(currentHandValue, nextState);
+		stack.push(thisAction);
 		
 		// Decide on a best action based on our previous experiences
 		ArrayList<Integer> experienceList = new ArrayList<Integer>(Arrays.asList(matrixQ[currentHandValue]));
@@ -168,6 +174,34 @@ public class AIDecisionEngine implements DecisionEngine {
 		results.add(result);
 	}
 	
+	
+	/**
+	 * Updates matrixQ based on the outcome of the last round.
+	 * 
+	 * @param result
+	 * 		The result of the last round
+	 */
+	public void updateMatrixQ(ResultEnum result) {
+		Point previousAction = stack.pop();
+		int i = previousAction.x;
+		int j = previousAction.y;
+		
+		System.out.println("i: " + i + "\tj: " + j + "\tresult: " + result);
+		switch(result) {
+			case BLACKJACK: 
+				matrixQ[i][j] += 50;
+				break;
+			case WIN:
+				matrixQ[i][j] += 10;
+				break;
+			case LOSE:
+				matrixQ[i][j] -= 10;
+				break;
+			case PUSH:
+			default:
+				break;
+		}
+	}
 	
 	/**
 	 * Prints a matrix. Made specifically for printing matrixQ or matrixR.

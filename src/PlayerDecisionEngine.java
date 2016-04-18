@@ -31,6 +31,10 @@ public class PlayerDecisionEngine implements DecisionEngine {
 	}
 	
 	public void appendResult(RoundResult result) {
-		
+		// intentionally left blank
+	}
+	
+	public void updateMatrixQ(ResultEnum result) {
+		// intentionally left blank
 	}
 }
